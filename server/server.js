@@ -72,10 +72,9 @@ if (!fs.existsSync(uploadsDir)){
     fs.mkdirSync(uploadsDir);
 }
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/dist')));
-    app.get('*splat', (req, res) =>
-        res.sendFile(path.resolve(__dirname, '..', 'client', 'dist', 'index.html'))
-    );
+    app.get('/', (req, res) => {
+        res.send('Restaurant API is running in production...');
+    });
 } else {
     app.get('/', (req, res) => {
         res.send('Restaurant API is running...');
